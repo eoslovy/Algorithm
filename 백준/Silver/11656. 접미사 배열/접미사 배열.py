@@ -1,18 +1,10 @@
-import sys
-input = sys.stdin.readline
-from collections import deque
-from itertools import combinations
+s = input()
+answer = []
 
-S = str(input().split())
+for i in range(len(s)):
+    answer.append(s[i:])
 
-seq = []
-for i in range(1, len(S)-3):
-    tmp = []
-    for j in range(i+1, len(S)-2):
-        tmp += S[j]
-    tmp_word = ''.join(tmp)
-    seq.append(tmp_word)
+answer.sort()
 
-seq.sort()
-for s in seq:
-    print(s)
+for i in answer:
+    print(i)

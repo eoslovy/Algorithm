@@ -27,10 +27,12 @@ public class Main {
             mid = (start + end) / 2;
             long sum = 0;
 
-            for (long length : lst) {
+            for (int i = n - 1; i >= 0; i--) {
+                long length = lst[i];
                 if (length - mid > 0) {
                     sum += (length - mid);
                 }
+                else break;
             }
 
             if (sum < m)

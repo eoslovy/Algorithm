@@ -1,25 +1,22 @@
 import sys
 input = sys.stdin.readline
-from collections import deque
 
-def dfs(n,lst):
-    if n == M:
-        print(*lst)
+def dfs(cnt, start, ans):
+    if cnt == m:
+        print(*ans)
         return
 
-    for i in range(1, N+1):
+    for i in range(start, n + 1):
         if visited[i] == 0:
-            if len(lst) == 0:
-                visited[i] = 1
-                dfs(n+1, lst + [i])
-                visited[i] = 0
-            elif i > lst[-1]:
-                visited[i] = 1
-                dfs(n+1, lst + [i])
-                visited[i] = 0
+            visited[i] = 1
+            dfs(cnt + 1, i + 1, ans + [i])
+            visited[i] = 0
 
-N, M = map(int, input().split())
-visited = [0] * (N+1)
+
+n, m = map(int, input().split())
 lst = []
+visited = [0] * (n + 1)
+for i in range(1, n + 1):
+    lst.append(i)
 
-dfs(0,lst)
+dfs(0, 1, [])

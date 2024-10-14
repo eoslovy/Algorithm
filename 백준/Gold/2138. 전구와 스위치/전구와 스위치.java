@@ -25,23 +25,19 @@ public class Main {
             arr2[i] = Integer.parseInt(String.valueOf(input.charAt(i - 1)));
         }
 
-        int cnt0 = 0;
-        for (int i = 2; i < n + 1; i++) {
-            if (arr0[i - 1] == arr2[i - 1])
-                continue;
-            else {
-                change0(i);
+        int cnt0 = 0; // 첫 번째 안바꾼 경우
+        for (int i = 2; i <= n; i++) {
+            if (arr0[i - 1] != arr2[i - 1]) {
+                change(i, arr0);
                 cnt0++;
             }
         }
 
         int cnt1 = 1;
-        change1(1);
-        for (int i = 2; i < n + 1; i++) {
-            if (arr1[i - 1] == arr2[i - 1])
-                continue;
-            else {
-                change1(i);
+        change(1, arr1); // 첫 번째 바꾼 우
+        for (int i = 2; i <= n; i++) {
+            if (arr1[i - 1] != arr2[i - 1]) {
+                change(i, arr1);
                 cnt1++;
             }
         }
@@ -60,37 +56,12 @@ public class Main {
         System.out.println(ans);
     }
 
-    private static void change0(int x) {
-        if (arr0[x - 1] == 0)
-            arr0[x - 1] = 1;
-        else if (arr0[x - 1] == 1)
-            arr0[x - 1] = 0;
-
-        if (arr0[x] == 0)
-            arr0[x] = 1;
-        else if (arr0[x] == 1)
-            arr0[x] = 0;
-
-        if (arr0[x + 1] == 0)
-            arr0[x + 1] = 1;
-        else if (arr0[x + 1] == 1)
-            arr0[x + 1] = 0;
-    }
-
-    private static void change1(int x) {
-        if (arr1[x - 1] == 0)
-            arr1[x - 1] = 1;
-        else if (arr1[x - 1] == 1)
-            arr1[x - 1] = 0;
-
-        if (arr1[x] == 0)
-            arr1[x] = 1;
-        else if (arr1[x] == 1)
-            arr1[x] = 0;
-
-        if (arr1[x + 1] == 0)
-            arr1[x + 1] = 1;
-        else if (arr1[x + 1] == 1)
-            arr1[x + 1] = 0;
+    private static void change(int x, int arr[]) {
+        for (int i = x - 1; i <= x + 1; i++) {
+            if (arr[i] == 0)
+                arr[i] = 1;
+            else
+                arr[i] = 0;
+        }
     }
 }

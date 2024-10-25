@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -37,9 +36,6 @@ public class Main {
 		int maxIdx1 = 0;
 		int maxIdx2 = 0;
 
-//		System.out.println(Arrays.toString(visited1));
-//		System.out.println(Arrays.toString(visited2));
-
 		for (int i = 100; i >= 0; i--) {
 			if (visited1[i] > 0 && visited2[i] > 0) {
 				maxValue = i;
@@ -48,29 +44,12 @@ public class Main {
 		}
 
 		List<Integer> lst = new ArrayList<>();
-//        int cnt=0;
 		while (true) {
-//            if(cnt>10)
-//                break;
-//            cnt++;
-//            if (maxIdx1 >= a || maxIdx2 >= b)
-//                break;
-			int idx1 = -1;
-			int idx2 = -1;
-			int tmpMaxValue = maxValue;
-			int tmpMaxIdx1 = maxIdx1;
-			int tmpMaxIdx2 = maxIdx2;
-//			System.out.printf("%d %d %d\n", maxValue, maxIdx1, maxIdx2);
-//			System.out.println(Arrays.toString(visited1));
-//			System.out.println(Arrays.toString(visited2));
-
 			int asd1 = 0;
 			for (int i = maxIdx1; i < a; i++) {
 				if (n[i] == maxValue && visited1[n[i]] > 0) {
-//				if (n[i] == maxValue) {
 					maxIdx1 = i + 1;
 					visited1[n[i]]--;
-//					idx1 = i;
 					asd1 = 1;
 					break;
 				}
@@ -79,22 +58,15 @@ public class Main {
 			int asd2 = 0;
 			for (int i = maxIdx2; i < b; i++) {
 				if (m[i] == maxValue && visited2[m[i]] > 0) {
-//				if (m[i] == maxValue) {
 					maxIdx2 = i + 1;
 					visited2[m[i]]--;
-//					idx2 = i;
 					asd2 = 1;
 					break;
 				}
 			}
-//			System.out.printf("%d %d %d %d %d\n", maxIdx1, maxIdx2, asd1, asd2, maxValue);
 
 			if (asd1 == 1 && asd2 == 1) {
 				lst.add(maxValue);
-//				maxIdx1 = idx1 + 1;
-//				maxIdx2 = idx2 + 1;
-//				visited1[maxValue]--;
-//				visited2[maxValue]--;
 			} else if (asd1 == 0 && asd2 == 0)
 				break;
 
@@ -122,12 +94,6 @@ public class Main {
 			}
 
 			if (maxValue == 0) {
-//				System.out.println("max0이라 break");
-				break;
-			}
-
-			if (tmpMaxValue == maxValue && tmpMaxIdx1 == maxIdx1 && tmpMaxIdx2 == maxIdx2) {
-//				System.out.println("겹쳐서 break");
 				break;
 			}
 		}
@@ -139,10 +105,3 @@ public class Main {
 	}
 
 }
-//10
-//9 8 7 6 5 1 2 3 4 5
-//8
-//1 3 5 7 9 6 5 4
-//
-//4 -> 3
-//9 6 5 4 -> 9 6 5

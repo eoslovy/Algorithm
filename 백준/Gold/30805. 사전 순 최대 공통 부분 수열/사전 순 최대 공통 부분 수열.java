@@ -36,17 +36,17 @@ public class Main {
 		int maxIdx1 = 0;
 		int maxIdx2 = 0;
 
-		for (int i = 100; i >= 0; i--) {
+		for (int i = 100; i >= 0; i--) { // 처음 젤 큰 수 찾기
 			if (visited1[i] > 0 && visited2[i] > 0) {
 				maxValue = i;
 				break;
 			}
 		}
 
-		List<Integer> lst = new ArrayList<>();
+		List<Integer> lst = new ArrayList<>(); // 실제 답
 		while (true) {
 			int asd1 = 0;
-			for (int i = maxIdx1; i < a; i++) {
+			for (int i = maxIdx1; i < a; i++) { // 젤 큰 수 위치 찾고, 개수 줄여주기
 				if (n[i] == maxValue && visited1[n[i]] > 0) {
 					maxIdx1 = i + 1;
 					visited1[n[i]]--;
@@ -56,7 +56,7 @@ public class Main {
 			}
 
 			int asd2 = 0;
-			for (int i = maxIdx2; i < b; i++) {
+			for (int i = maxIdx2; i < b; i++) { // 젤 큰 수 위치 찾고, 개수 줄여주기
 				if (m[i] == maxValue && visited2[m[i]] > 0) {
 					maxIdx2 = i + 1;
 					visited2[m[i]]--;
@@ -65,13 +65,13 @@ public class Main {
 				}
 			}
 
-			if (asd1 == 1 && asd2 == 1) {
+			if (asd1 == 1 && asd2 == 1) { // 둘 다 찾았으니 답에 넣어주기
 				lst.add(maxValue);
 			} else if (asd1 == 0 && asd2 == 0)
 				break;
 
 			maxValue = 0;
-			for (int i = 100; i >= 0; i--) {
+			for (int i = 100; i >= 0; i--) { // 그 다음으로 큰 수 찾기 (순서는 뒤로)
 				if (visited1[i] > 0 && visited2[i] > 0) {
 					maxValue = i;
 					int flag1 = 0;
@@ -93,7 +93,7 @@ public class Main {
 				}
 			}
 
-			if (maxValue == 0) {
+			if (maxValue == 0) { // 끝까지 다 탐색한거임
 				break;
 			}
 		}

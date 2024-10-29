@@ -23,17 +23,11 @@ public class Main {
 			return;
 		}
 
-		if (x % 10 == 1) {
-//			System.out.println(x);
-//			System.out.println("------");
+		if (x % 10 == 1)
 			dfs((x - 1) / 10, cnt + 1);
-		}
 
-		else if (x > a && x % 2 == 0) {
-//			System.out.println(x);
-//			System.out.println("--aa--");
+		else if (x > a && x % 2 == 0)
 			dfs(x / 2, cnt + 1);
-		}
 
 		else
 			ans = -2;

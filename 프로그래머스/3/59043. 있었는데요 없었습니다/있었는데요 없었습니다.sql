@@ -1,7 +1,7 @@
-select a.animal_id, a.name
-from animal_ins a inner join (
-    select animal_id, datetime tmp
-    from animal_outs) b
-on a.animal_id = b.animal_id
-where a.datetime > b.tmp
-order by a.datetime
+SELECT A.ANIMAL_ID, A.NAME
+# SELECT *
+FROM ANIMAL_INS A
+INNER JOIN ANIMAL_OUTS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE A.DATETIME > B.DATETIME
+ORDER BY A.DATETIME

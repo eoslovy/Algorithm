@@ -54,13 +54,8 @@ class Solution {
                 result+=s.charAt(i);
             }
         }
-        System.out.println(result);
         
-        int len = result.length();
-        for(int i=0;i<len;i++){
-            answer*=10;
-            answer+=(result.charAt(i) - '0');
-        }
+        answer = Integer.valueOf(result);
         return answer;
     }
 }

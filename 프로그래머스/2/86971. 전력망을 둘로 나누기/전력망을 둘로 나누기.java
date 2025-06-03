@@ -3,34 +3,37 @@ import java.util.*;
 class Solution {
     public int solution(int n, int[][] wires) {
         int answer = Integer.MAX_VALUE;
-        int[][] graph = new int[n+1][n+1];
+        List<List<Integer>> graph = new ArrayList<>();
+        for(int i=0;i<n+1;i++){
+            graph.add(new ArrayList<>());
+        }
         
         for(int[] wire:wires){
             int a=wire[0];
             int b=wire[1];
-            graph[a][b]=1;
-            graph[b][a]=1; 
+            graph.get(a).add(b);
+            graph.get(b).add(a);
         }
         
         for(int[] wire: wires){
             int a=wire[0];
             int b=wire[1];
             
-            graph[a][b]=0;
-            graph[b][a]=0;
+            graph.get(a).remove((Integer)b);
+            graph.get(b).remove((Integer)a);
             
             int cntA=bfs(a,graph,n);
             int cntB=n-cntA;
             
             answer=Math.min(answer, Math.abs(cntA-cntB));
             
-            graph[a][b]=1;
-            graph[b][a]=1;
+            graph.get(a).add(b);
+            graph.get(b).add(a);
         }
         return answer;
     }
     
-    static int bfs(int start, int[][] graph, int n){
+    static int bfs(int start, List<List<Integer>> graph, int n){
         Queue<Integer> q = new LinkedList<>();
         int[] visited = new int[n+1];
         q.add(start);
@@ -39,16 +42,16 @@ class Solution {
         
         while(!q.isEmpty()){
             int now = q.poll();
-            for(int i=0;i<n+1;i++){
-                if(visited[i]==0&&graph[now][i]==1){
-                    q.add(i);
-                    visited[i]=1;
+            
+            for(int next: graph.get(now)){
+                if(visited[next]==0){
+                    q.add(next);
+                    visited[next]=1;
                     cnt++;
                 }
             }
+            
         }
         return cnt;
-    
     }
-
 }
